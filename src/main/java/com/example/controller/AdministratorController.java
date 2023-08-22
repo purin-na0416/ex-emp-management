@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Administrator;
 import com.example.form.InsertAdministratorForm;
+import com.example.form.LoginForm;
 import com.example.service.AdministratorService;
 
 @Controller
@@ -18,9 +19,9 @@ public class AdministratorController {
 
   @GetMapping("/toInsert")
   /**
-   * 従業員登録画面を表示する
+   * 管理者登録画面を表示する
    * 
-   * @param form 従業員登録フォームのリクエストパラメータを格納する
+   * @param form 管理者登録フォームのリクエストパラメータを格納する
    * @return administrator/insert.htmlに遷移する
    */
   public String toInsert(InsertAdministratorForm form) {
@@ -46,4 +47,15 @@ public class AdministratorController {
 
     return "redirect:/";
   }  
+
+  @GetMapping("/")
+  /**
+   * ログイン画面を表示する
+   * 
+   * @param form リクエストパラメータが入っているLoginFormのオブジェクト
+   * @return administrator/login.htmlに遷移する
+   */
+  public String toLogin(LoginForm form) {
+    return "administrator/login";
+  }
 }
