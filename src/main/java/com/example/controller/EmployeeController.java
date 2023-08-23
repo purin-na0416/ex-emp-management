@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Employee;
+import com.example.form.UpdateEmployeeForm;
 import com.example.service.EmployeeService;
 
 @Controller
@@ -30,5 +31,22 @@ public class EmployeeController {
     model.addAttribute("employeeList", employeeList);
 
     return "employee/list";
+  }
+
+  @GetMapping("/showDetail")
+
+  /**
+   * 従業員の詳細ページを表示する
+   * 
+   * @param id リクエストパラメータで送られてくる従業員ID
+   * @param model
+   * @param form
+   * @return employee/detail.htmlに遷移する
+   */
+  public String showDetail(String id, Model model, UpdateEmployeeForm form) {
+    Employee employee = employeeService.showDetail(Integer.parseInt(id));
+    model.addAttribute("employee", employee);
+
+    return "employee/detail";
   }
 }
