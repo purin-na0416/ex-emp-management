@@ -86,8 +86,20 @@ public class AdministratorController {
     } else {
 
     //登録情報と一致する場合は従業員一覧画面に遷移する  
-      session.setAttribute("administratorName", administrator);
+      session.setAttribute("administratorName", administrator.getName());
       return "redirect:/employee/showList";
     }
+  }
+
+  @GetMapping("/logout")
+  /**
+   * ログアウトをする
+   * 
+   * @param form
+   * @return ログイン画面にリダイレクトする
+   */
+  public String logout(LoginForm form) {
+    session.invalidate();
+    return "redirect:/";
   }
 }
