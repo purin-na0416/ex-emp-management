@@ -4,7 +4,7 @@ public class UpdateEmployeeForm {
   /** ID */
   private String id;
 
-  /** 不要人数 */
+  /** 扶養人数 */
   private String dependentsCount;
 
   public String getId() {
