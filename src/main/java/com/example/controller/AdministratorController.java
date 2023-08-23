@@ -56,7 +56,7 @@ public class AdministratorController {
 
   @GetMapping("/")
   /**
-   * ログイン画面を表示する
+   * 管理者ログイン画面を表示する
    * 
    * @param form リクエストパラメータが入っているLoginFormのオブジェクト
    * @return administrator/login.htmlに遷移する
@@ -66,14 +66,26 @@ public class AdministratorController {
   }
 
   @PostMapping("/login")
+
+  /**
+   * ログインを実施する
+   * 
+   * @param form
+   * @param model 
+   * @return employee/showList.htmlにリダイレクト
+   */
   public String login(LoginForm form, Model model) {
     Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
+
+    //入力した値が登録情報と異なる場合はエラーメッセージを表示する
 
     if(administrator == null) {
       String message = "メールアドレスまたはパスワードが不正です。";
       model.addAttribute("error", message);
       return "administrator/login";
     } else {
+
+    //登録情報と一致する場合は従業員一覧画面に遷移する  
       session.setAttribute("administratorName", administrator);
       return "redirect:/employee/showList";
     }
