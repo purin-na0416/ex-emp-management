@@ -36,7 +36,7 @@ public class Employee {
   /** 特性 */
   private String characteristics;
 
-  /** 不要人数 */
+  /** 扶養人数 */
   private Integer dependentsCount;
 
   public Employee() {
